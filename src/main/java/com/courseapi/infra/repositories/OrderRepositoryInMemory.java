@@ -1,12 +1,15 @@
-package com.courseapi.application.infra.repositories;
+package com.courseapi.infra.repositories;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 
-import com.courseapi.application.infra.execptions.NotFound;
+import org.springframework.stereotype.Repository;
+
 import com.courseapi.application.repositories.OrderRepository;
 import com.courseapi.domain.entities.Order;
+import com.courseapi.infra.execptions.NotFound;
 
+@Repository
 public class OrderRepositoryInMemory implements OrderRepository {
 
   private ArrayList<Order> orders;

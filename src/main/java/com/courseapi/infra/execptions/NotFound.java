@@ -1,4 +1,4 @@
-package com.courseapi.application.infra.execptions;
+package com.courseapi.infra.execptions;
 
 import lombok.Getter;
 
