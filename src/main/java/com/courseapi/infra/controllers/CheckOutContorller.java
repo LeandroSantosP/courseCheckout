@@ -12,6 +12,9 @@ public class CheckOutContorller {
   @Autowired
   CheckOut checkOut;
 
+  @Autowired
+  QueueController queueController;
+
   @GetMapping("/get")
   public ResponseEntity<String> get() {
     return ResponseEntity.ok("Hello");
