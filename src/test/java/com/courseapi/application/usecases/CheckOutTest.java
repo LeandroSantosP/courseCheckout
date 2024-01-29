@@ -24,9 +24,7 @@ public class CheckOutTest {
         "john.doe@gmail.com", "123456789");
     var orderId = checkOut.execute(input);
     assertNotNull(orderId);
-
     var getOrderOutput = this.getOrder.execute(orderId);
-
     assertNotNull(getOrderOutput);
     assertEquals(getOrderOutput.orderId(), orderId);
     assertEquals(getOrderOutput.couseId(), "6d0b1e87-e755-4339-a235-a4fdbc8af45a");
@@ -34,7 +32,6 @@ public class CheckOutTest {
     assertEquals(getOrderOutput.email(), "john.doe@gmail.com");
     assertEquals(getOrderOutput.price(), 222.22);
     assertEquals(getOrderOutput.status(), "payed");
-
   }
 
 }

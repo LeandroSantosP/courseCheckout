@@ -1,9 +1,11 @@
 package com.courseapi.infra.gateways;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.courseapi.application.gateway.PaymentGateway;
 
+@Primary
 @Component
 public class PaymentGatewayFack implements PaymentGateway {
 

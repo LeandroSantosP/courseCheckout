@@ -2,7 +2,6 @@ package com.courseapi.application.usecases;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.courseapi.application.gateway.PaymentGateway;
 import com.courseapi.application.gateway.PaymentGateway.Input;
 import com.courseapi.application.repositories.CourseRepository;
