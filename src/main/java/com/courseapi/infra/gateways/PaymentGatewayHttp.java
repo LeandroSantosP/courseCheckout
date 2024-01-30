@@ -2,7 +2,7 @@ package com.courseapi.infra.gateways;
 
 import org.springframework.stereotype.Component;
 
-import com.courseapi.application.gateway.PaymentGateway;
+import com.courseapi.application.interfaces.PaymentGateway;
 
 @Component
 public class PaymentGatewayHttp implements PaymentGateway {

@@ -1,4 +1,4 @@
-package com.courseapi.application.queue;
+package com.courseapi.infra.queue;
 
 import java.util.function.Consumer;
 

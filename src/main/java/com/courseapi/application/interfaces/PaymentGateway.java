@@ -1,4 +1,4 @@
-package com.courseapi.application.gateway;
+package com.courseapi.application.interfaces;
 
 public interface PaymentGateway {
 

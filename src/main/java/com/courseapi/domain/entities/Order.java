@@ -28,10 +28,11 @@ public class Order {
   }
 
   public void paymentProcess(String status, String code) {
-    if (status == "approved" && code == "00") {
+
+    if (status.equals("approved") && code.equals("00")) {
       this.pay();
       return;
-    } else if (status == "reject" && code == "01") {
+    } else if (status.equals("reject") && code.equals("01")) {
       this.reject();
       return;
     }

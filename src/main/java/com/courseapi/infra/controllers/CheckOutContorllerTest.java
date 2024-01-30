@@ -4,16 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.courseapi.application.usecases.CheckOut;
+
+import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut;
 
 @RestController
-public class CheckOutContorller {
-
-  @Autowired
-  CheckOut checkOut;
-
-  @Autowired
-  QueueController queueController;
+public class CheckOutContorllerTest {
 
   @GetMapping("/get")
   public ResponseEntity<String> get() {

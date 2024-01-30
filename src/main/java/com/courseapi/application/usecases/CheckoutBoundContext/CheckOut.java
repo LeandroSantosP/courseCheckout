@@ -1,13 +1,14 @@
-package com.courseapi.application.usecases;
+package com.courseapi.application.usecases.CheckoutBoundContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.courseapi.application.queue.QueueBroken;
+
 import com.courseapi.application.repositories.CourseRepository;
 import com.courseapi.application.repositories.OrderRepository;
 import com.courseapi.domain.entities.Course;
 import com.courseapi.domain.entities.Order;
-import com.courseapi.domain.messages.OrderCreateMessage;
+import com.courseapi.domain.messages.OrderCreate;
+import com.courseapi.infra.queue.QueueBroken;
 
 @Service
 public class CheckOut {
@@ -31,7 +32,13 @@ public class CheckOut {
     Course course = this.courseRepository.get(input.courseId);
     Order order = Order.create(course.getId(), input.name(), input.email(), course.getPrice());
     this.orderRepository.save(order);
-    this.queueBroken.publisher(new OrderCreateMessage(order.getId(), course.getPrice(), input.creditCardToken()));
+    this.queueBroken.publisher(
+        new OrderCreate(
+            order.getId(),
+            course.getPrice(),
+            input.creditCardToken(),
+            "order-create-exchange",
+            "order-create-route-key"));
     return new CheckOutOutput(order.getId(), "Order created successfully, payment in process...");
   }
 }

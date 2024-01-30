@@ -1,4 +1,4 @@
-package com.courseapi.application.usecases;
+package com.courseapi.application.usecases.CheckoutBoundContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

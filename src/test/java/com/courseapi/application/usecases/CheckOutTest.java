@@ -6,13 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
-import com.courseapi.CourseApiApplication;
-import com.courseapi.application.usecases.CheckOut.CheckOutInput;
+import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut;
+import com.courseapi.application.usecases.CheckoutBoundContext.GetOrder;
+import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut.CheckOutInput;
 
-@SpringBootTest(classes = { CourseApiApplication.class, PaymentProcess.class })
-@ContextConfiguration(classes = CourseApiApplication.class)
+@SpringBootTest
 public class CheckOutTest {
 
   @Autowired
@@ -31,6 +30,7 @@ public class CheckOutTest {
     // wait for payment
     Thread.sleep(200);
     var getOrderOutput = this.getOrder.execute(output.orderId());
+    System.out.println("STAUTS " + getOrderOutput.status());
 
     assertNotNull(getOrderOutput);
     assertEquals(getOrderOutput.orderId(), output.orderId());

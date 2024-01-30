@@ -6,10 +6,12 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.courseapi.application.queue.QueueBroken;
-import com.courseapi.application.usecases.PaymentProcess;
+
+import com.courseapi.application.usecases.CheckoutBoundContext.ConfimOrder;
+import com.courseapi.application.usecases.paymentBoundContext.PaymentProcess;
 import com.courseapi.domain.messages.Message;
-import com.courseapi.domain.messages.OrderCreateMessage;
+import com.courseapi.domain.messages.OrderCreate;
+import com.courseapi.domain.messages.PaymentFinished;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,14 +24,18 @@ public class RabbitMqAdapter implements QueueBroken {
   @Autowired
   PaymentProcess paymentProcess;
 
+  @Autowired
+  ConfimOrder confimOrder;
+
   @Override
   public void publisher(Message<?> message) {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
       this.amqpTemplate.convertAndSend(
-          "order-create-exchange",
-          "order-create-route-key",
+          message.getExchange(),
+          message.getRoutingKey(),
           objectMapper.writeValueAsString(message));
+
     } catch (JsonProcessingException | AmqpException e) {
       e.printStackTrace();
       System.out.println("JsonProcessingException: " + e.getMessage());
@@ -40,10 +46,21 @@ public class RabbitMqAdapter implements QueueBroken {
   @RabbitListener(queues = "order-create")
   void onMessage(String input) {
     try {
-      OrderCreateMessage message = new ObjectMapper().readValue(input.toString(),
-          OrderCreateMessage.class);
+      OrderCreate message = new ObjectMapper().readValue(input.toString(),
+          OrderCreate.class);
+      this.paymentProcess.handle(message.getMessage());
+    } catch (JsonProcessingException e) {
+      System.out.println("JsonProcessingException: " + e.getMessage());
+      e.printStackTrace();
+    }
+  }
 
-      this.paymentProcess.handle(message);
+  @RabbitListener(queues = "payment-finished")
+  void onPaymentFinashed(String input) {
+    try {
+      PaymentFinished message = new ObjectMapper().readValue(input.toString(),
+          PaymentFinished.class);
+      confimOrder.handle(message.getMessage());
     } catch (JsonProcessingException e) {
       System.out.println("JsonProcessingException: " + e.getMessage());
       e.printStackTrace();

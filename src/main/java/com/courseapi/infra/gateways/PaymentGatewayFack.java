@@ -3,7 +3,7 @@ package com.courseapi.infra.gateways;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import com.courseapi.application.gateway.PaymentGateway;
+import com.courseapi.application.interfaces.PaymentGateway;
 
 @Primary
 @Component

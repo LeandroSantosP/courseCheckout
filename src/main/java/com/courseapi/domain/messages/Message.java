@@ -4,11 +4,20 @@ import lombok.Getter;
 
 @Getter
 public abstract class Message<T> {
-  protected String name;
+  protected String queueName;
+  protected String exchange;
+  protected String routingKey;
   protected T message;
 
-  public Message(String name, T message) {
-    this.name = name;
+  public Message(String queueName, T message) {
+    this.queueName = queueName;
+    this.message = this.encryptMessage(message);
+  }
+
+  public Message(String queueName, T message, String exchange, String routingKey) {
+    this.queueName = queueName;
+    this.exchange = exchange;
+    this.routingKey = routingKey;
     this.message = this.encryptMessage(message);
   }
 
