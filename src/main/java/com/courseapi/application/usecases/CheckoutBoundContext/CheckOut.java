@@ -32,13 +32,15 @@ public class CheckOut {
     Course course = this.courseRepository.get(input.courseId);
     Order order = Order.create(course.getId(), input.name(), input.email(), course.getPrice());
     this.orderRepository.save(order);
-    this.queueBroken.publisher(
-        new OrderCreate(
-            order.getId(),
-            course.getPrice(),
-            input.creditCardToken(),
-            "order-create-exchange",
-            "order-create-route-key"));
+
+    var message = new OrderCreate(
+        order.getId(),
+        course.getPrice(),
+        input.creditCardToken(),
+        "order-create-exchange",
+        "order-create-route-key");
+
+    this.queueBroken.publisher(message);
     return new CheckOutOutput(order.getId(), "Order created successfully, payment in process...");
   }
 }

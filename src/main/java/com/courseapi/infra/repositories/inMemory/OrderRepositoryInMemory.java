@@ -1,4 +1,4 @@
-package com.courseapi.infra.repositories;
+package com.courseapi.infra.repositories.inMemory;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;

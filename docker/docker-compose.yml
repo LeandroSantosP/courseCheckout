@@ -6,3 +6,12 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
+
+
+  postgresData:
+    image: postgres:15.2
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecrectpass
