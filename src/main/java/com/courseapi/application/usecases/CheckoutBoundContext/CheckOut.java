@@ -31,16 +31,15 @@ public class CheckOut {
   public CheckOutOutput execute(CheckOutInput input) {
     Course course = this.courseRepository.get(input.courseId);
     Order order = Order.create(course.getId(), input.name(), input.email(), course.getPrice());
-    this.orderRepository.save(order);
-
+    var orderId = this.orderRepository.save(order);
     var message = new OrderCreate(
-        order.getId(),
+        orderId,
         course.getPrice(),
         input.creditCardToken(),
         "order-create-exchange",
         "order-create-route-key");
 
     this.queueBroken.publisher(message);
-    return new CheckOutOutput(order.getId(), "Order created successfully, payment in process...");
+    return new CheckOutOutput(orderId, "Order created successfully, payment in process...");
   }
 }

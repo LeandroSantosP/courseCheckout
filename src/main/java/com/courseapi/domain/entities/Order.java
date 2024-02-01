@@ -27,6 +27,10 @@ public class Order {
     return new Order(orderId, courseId, status, price, email, name);
   }
 
+  public static Order rebuild(String orderId, String status, String courseId, String name, String email, double price) {
+    return new Order(orderId, courseId, status, price, email, name);
+  }
+
   public void paymentProcess(String status, String code) {
 
     if (status.equals("approved") && code.equals("00")) {

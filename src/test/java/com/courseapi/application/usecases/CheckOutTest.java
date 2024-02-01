@@ -7,9 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.courseapi.application.repositories.CourseRepository;
+import com.courseapi.application.repositories.OrderRepository;
 import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut;
 import com.courseapi.application.usecases.CheckoutBoundContext.GetOrder;
 import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut.CheckOutInput;
+import com.courseapi.domain.entities.Course;
 
 @SpringBootTest
 public class CheckOutTest {
@@ -20,13 +23,22 @@ public class CheckOutTest {
   @Autowired
   GetOrder getOrder;
 
+  @Autowired
+  CourseRepository courseRepository;
+
+  @Autowired
+  OrderRepository orderRepository;
+
   @Test
   void testExecute() throws InterruptedException {
-    CheckOutInput input = new CheckOutInput("6d0b1e87-e755-4339-a235-a4fdbc8af45a", "John Doe",
+    var courseId = this.courseRepository.save(
+        new Course("6d0b1e87-e755-4339-a235-a4fdbc8af45a", "Learn Java", "Addding some description", 9999,
+            22222));
+
+    CheckOutInput input = new CheckOutInput(courseId, "John Doe",
         "john.doe@gmail.com", "123456789");
     var output = checkOut.execute(input);
     assertEquals(output.message(), "Order created successfully, payment in process...");
-
     // wait for payment
     Thread.sleep(200);
     var getOrderOutput = this.getOrder.execute(output.orderId());
@@ -35,7 +47,7 @@ public class CheckOutTest {
     assertNotNull(getOrderOutput);
     assertEquals(getOrderOutput.orderId(), output.orderId());
     assertEquals(getOrderOutput.couseId(),
-        "6d0b1e87-e755-4339-a235-a4fdbc8af45a");
+        courseId);
     assertEquals(getOrderOutput.name(), "John Doe");
     assertEquals(getOrderOutput.email(), "john.doe@gmail.com");
     assertEquals(getOrderOutput.price(), 222.22);

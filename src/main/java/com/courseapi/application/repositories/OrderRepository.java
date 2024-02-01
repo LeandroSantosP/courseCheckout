@@ -1,4 +1,5 @@
 package com.courseapi.application.repositories;
+
 import com.courseapi.domain.entities.Order;
 
 public interface OrderRepository {

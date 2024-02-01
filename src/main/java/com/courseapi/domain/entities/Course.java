@@ -12,6 +12,10 @@ public class Course {
     private int duration;
     private double price;
 
+    public static Course rebuild(String id, String name, String description, int duration, double price) {
+        return new Course(id, name, description, duration, price * 100);
+    }
+
     public double getPrice() {
         return this.price / 100;
     }

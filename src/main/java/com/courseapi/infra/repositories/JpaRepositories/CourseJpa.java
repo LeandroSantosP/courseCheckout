@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table(name = "course")
+@Table(name = "courses")
 @Entity(name = "course")
 @NoArgsConstructor
 @AllArgsConstructor
