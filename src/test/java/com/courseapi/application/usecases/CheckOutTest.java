@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.courseapi.application.interfaces.StorageCourse;
 import com.courseapi.application.repositories.CourseRepository;
 import com.courseapi.application.repositories.OrderRepository;
 import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut;
@@ -32,8 +33,8 @@ public class CheckOutTest {
   @Test
   void testExecute() throws InterruptedException {
     var courseId = this.courseRepository.save(
-        new Course("6d0b1e87-e755-4339-a235-a4fdbc8af45a", "Learn Java", "Addding some description", 9999,
-            22222));
+        Course.create("Learn Java", "Addding some description", 9999,
+            22222, "img"));
 
     CheckOutInput input = new CheckOutInput(courseId, "John Doe",
         "john.doe@gmail.com", "123456789");

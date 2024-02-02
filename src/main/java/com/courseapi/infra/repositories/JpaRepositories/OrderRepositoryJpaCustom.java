@@ -12,12 +12,12 @@ import jakarta.transaction.Transactional;
 
 @Primary
 @Repository
-class OrderRepositoryJpaImpl implements OrderRepository {
+class OrderRepositoryJpaCustom implements OrderRepository {
 
   @PersistenceContext
   private EntityManager entityManager;
 
-  public OrderRepositoryJpaImpl(JpaContext jpaContext) {
+  public OrderRepositoryJpaCustom(JpaContext jpaContext) {
     this.entityManager = jpaContext.getEntityManagerByManagedType(OrderJpa.class);
   }
 

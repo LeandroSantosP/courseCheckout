@@ -16,7 +16,7 @@ public class CheckOutContorllerTest {
 
   @GetMapping("/get")
   public ResponseEntity<String> get() {
-    var a = this.courseRepositoryJpa.save(new Course("12345", "Java Code", "des", 1000, 99.99));
+    var a = this.courseRepositoryJpa.save(new Course("12345", "Java Code", "des", 1000, 99.99, ""));
     var s = this.courseRepositoryJpa.get(a);
     return ResponseEntity.ok("amount: " + s.getName());
   }

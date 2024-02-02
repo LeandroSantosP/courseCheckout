@@ -26,6 +26,9 @@ public class CourseJpa {
   private String description;
 
   @Column(nullable = false)
+  private String imageRef;
+
+  @Column(nullable = false)
   private int duration;
 
   @Min(value = 0)

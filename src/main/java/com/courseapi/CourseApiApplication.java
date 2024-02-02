@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableRabbit
-@EnableJpaRepositories(repositoryImplementationPostfix = "Impl")
+@EnableJpaRepositories(repositoryImplementationPostfix = "Custom")
 @SpringBootApplication
 public class CourseApiApplication {
 

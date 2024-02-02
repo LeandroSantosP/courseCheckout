@@ -15,16 +15,26 @@ public interface CourseRepositoryJpa extends JpaRepository<CourseJpa, String>, C
   @Override
   default Course get(@NonNull String courseId) {
     var couseData = this.findById(courseId).orElseThrow(() -> new NotFound("Course Not Found"));
-    return Course.rebuild(couseData.getId(), couseData.getName(), couseData.getDescription(),
+    return new Course(
+        couseData.getId(),
+        couseData.getName(),
+        couseData.getDescription(),
         couseData.getDuration(),
-        couseData.getPrice());
+        couseData.getPrice(),
+        couseData.getImageRef());
   }
 
   @Override
   default String save(Course course) {
     var couseData = this
-        .save(new CourseJpa(course.getId(), course.getName(), course.getDescription(), course.getDuration(),
+        .save(new CourseJpa(
+            course.getId(),
+            course.getName(),
+            course.getDescription(),
+            course.getRef(),
+            course.getDuration(),
             course.getPrice()));
+
     return couseData.getId();
   }
 
