@@ -35,7 +35,6 @@ public class RabbitMqAdapter implements QueueBroken {
           message.getExchange(),
           message.getRoutingKey(),
           objectMapper.writeValueAsString(message));
-
     } catch (JsonProcessingException | AmqpException e) {
       e.printStackTrace();
       System.out.println("JsonProcessingException: " + e.getMessage());
@@ -67,7 +66,6 @@ public class RabbitMqAdapter implements QueueBroken {
     }
   }
 
-  @Override
   public void consumer(String queueName, Consumer<Message<?>> call) {
     // Object input = this.amqpTemplate.receiveAndConvert(queueName);
     // try {

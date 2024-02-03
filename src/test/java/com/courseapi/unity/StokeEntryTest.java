@@ -2,8 +2,6 @@ package com.courseapi.unity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.awt.List;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 

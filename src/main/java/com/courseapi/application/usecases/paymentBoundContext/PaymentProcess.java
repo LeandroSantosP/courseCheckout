@@ -13,12 +13,14 @@ import com.courseapi.infra.queue.QueueBroken;
 @Service
 public class PaymentProcess implements MessageHandler<OrderMessage> {
 
-  @Autowired
   private PaymentGateway paymentGateway;
 
-  @Autowired
-  @Lazy
   private QueueBroken queueBroken;
+
+  public PaymentProcess(PaymentGateway paymentGateway, @Autowired @Lazy QueueBroken queueBroken) {
+    this.paymentGateway = paymentGateway;
+    this.queueBroken = queueBroken;
+  }
 
   @Override
   public void handle(OrderMessage message) {
