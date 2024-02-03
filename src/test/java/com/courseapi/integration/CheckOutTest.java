@@ -32,8 +32,8 @@ public class CheckOutTest {
   @Test
   void testExecute() throws InterruptedException {
     var courseId = this.courseRepository.save(
-        Course.create("Learn Java", "Addding some description", 9999,
-            22222, "img"));
+        Course.create("Learn Java", "Addding some description", 999,
+            22222, "img-name-1.png"));
 
     CheckOutInput input = new CheckOutInput(courseId, "John Doe",
         "john.doe@gmail.com", "123456789");
