@@ -2,14 +2,10 @@ package com.courseapi.infra.storage;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.awt.image.BufferedImage;
-
 import javax.imageio.ImageIO;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,7 +30,6 @@ public class StorageCourseInDisc implements StorageCourse {
     try {
       Path targetLocation = fileStorageLocation.resolve(fileName);
       content.transferTo(targetLocation);
-
       return targetLocation.toAbsolutePath().toString();
     } catch (IOException e) {
       System.out.println(e.getMessage());

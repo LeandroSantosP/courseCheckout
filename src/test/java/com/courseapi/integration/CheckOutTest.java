@@ -1,4 +1,4 @@
-package com.courseapi.application.usecases;
+package com.courseapi.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.courseapi.application.interfaces.StorageCourse;
 import com.courseapi.application.repositories.CourseRepository;
 import com.courseapi.application.repositories.OrderRepository;
 import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut;

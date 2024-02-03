@@ -3,8 +3,8 @@ package com.courseapi.application.usecases.CheckoutBoundContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.courseapi.application.interfaces.CheckOutOrderRepo;
 import com.courseapi.application.repositories.CourseRepository;
-import com.courseapi.application.repositories.OrderRepository;
 import com.courseapi.domain.entities.Course;
 import com.courseapi.domain.entities.Order;
 import com.courseapi.domain.messages.OrderCreate;
@@ -17,7 +17,7 @@ public class CheckOut {
   private CourseRepository courseRepository;
 
   @Autowired
-  private OrderRepository orderRepository;
+  private CheckOutOrderRepo orderRepository;
 
   @Autowired
   private QueueBroken queueBroken;
