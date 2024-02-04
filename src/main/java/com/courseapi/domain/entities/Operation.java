@@ -11,6 +11,7 @@ public class Operation {
     if (value != "in" && value != "out") {
       throw new IllegalArgumentException("Invalid Operation");
     }
+
     this.value = value;
   }
 

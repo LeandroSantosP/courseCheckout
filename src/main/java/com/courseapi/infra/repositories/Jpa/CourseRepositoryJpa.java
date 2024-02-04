@@ -1,4 +1,4 @@
-package com.courseapi.infra.repositories.JpaRepositories;
+package com.courseapi.infra.repositories.Jpa;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.courseapi.application.repositories.CourseRepository;
 import com.courseapi.domain.entities.Course;
 import com.courseapi.infra.execptions.NotFound;
+import com.courseapi.infra.repositories.Jpa.JpaTableObjScan.CourseJpa;
 
 import lombok.NonNull;
 

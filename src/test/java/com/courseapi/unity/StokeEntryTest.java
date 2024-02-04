@@ -18,7 +18,7 @@ public class StokeEntryTest {
 
   @Test
   void shouldBeAbleCreateAnStokeEntry() {
-    StokeEntry stokeEntry = new StokeEntryIn("productId", 10);
+    StokeEntry stokeEntry = StokeEntryIn.create("productId", 10);
     assertEquals(stokeEntry.getProductId(), "productId");
     assertEquals(stokeEntry.getOperation(), "in");
     assertEquals(stokeEntry.getAmount(), 10);
@@ -28,7 +28,7 @@ public class StokeEntryTest {
   void shouldNotBeAbleCreateAnStokeEntryWithNegativeAmount() {
 
     try {
-      new StokeEntryOut("productId", -10);
+      StokeEntryOut.create("productId", -10);
     } catch (Exception e) {
       assertEquals(e.getMessage(), "Amount cannot be negative");
     }
@@ -37,14 +37,12 @@ public class StokeEntryTest {
   @Test
   void shouldBeAbleCalculateStokeEntriesAmount() {
     ArrayList<StokeEntry> stokeEntries = new ArrayList<>(Arrays.asList(
-        new StokeEntryIn("productId1", 10),
-        new StokeEntryOut("productId2", 5),
-        new StokeEntryIn("productId3", 30),
-        new StokeEntryOut("productId4", 10)));
+        StokeEntryIn.create("productId1", 10),
+        StokeEntryOut.create("productId2", 5),
+        StokeEntryIn.create("productId3", 30),
+        StokeEntryOut.create("productId4", 10)));
 
-    StokeEntryCalculator stokeEntryCalculator = new StokeEntryCalculator();
-
-    int result = stokeEntryCalculator.exec(stokeEntries);
+    int result = StokeEntryCalculator.exec(stokeEntries);
 
     assertEquals(result, 25);
 

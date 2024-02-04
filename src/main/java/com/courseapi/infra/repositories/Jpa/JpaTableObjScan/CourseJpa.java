@@ -1,4 +1,4 @@
-package com.courseapi.infra.repositories.JpaRepositories;
+package com.courseapi.infra.repositories.Jpa.JpaTableObjScan;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;

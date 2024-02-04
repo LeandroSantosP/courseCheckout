@@ -1,4 +1,4 @@
-package com.courseapi.infra.repositories.JpaRepositories;
+package com.courseapi.infra.repositories.Jpa.repositoryJpaCustom;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.JpaContext;
@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 import com.courseapi.application.repositories.OrderRepository;
 import com.courseapi.domain.entities.Order;
 import com.courseapi.infra.execptions.NotFound;
+import com.courseapi.infra.repositories.Jpa.JpaTableObjScan.CourseJpa;
+import com.courseapi.infra.repositories.Jpa.JpaTableObjScan.OrderJpa;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -28,7 +31,6 @@ class OrderRepositoryJpaCustom implements OrderRepository {
     OrderJpa orderData = new OrderJpa(order.getId(), order.getStatus(),
         order.getPrice(), order.getEmail(), order.getName(),
         courseJpa);
-
     OrderJpa mergedOrderData = entityManager.merge(orderData);
     entityManager.flush();
     return mergedOrderData.getId();

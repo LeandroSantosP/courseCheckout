@@ -17,7 +17,7 @@ public class PaymentProcess implements MessageHandler<OrderMessage> {
 
   private QueueBroken queueBroken;
 
-  public PaymentProcess(PaymentGateway paymentGateway, @Autowired @Lazy QueueBroken queueBroken) {
+  public PaymentProcess(PaymentGateway paymentGateway, @Lazy QueueBroken queueBroken) {
     this.paymentGateway = paymentGateway;
     this.queueBroken = queueBroken;
   }
