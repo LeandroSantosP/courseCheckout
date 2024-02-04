@@ -25,6 +25,12 @@ public interface StokeEntryRepositoryJpa extends JpaRepository<StokeEntryJpa, St
   }
 
   @Override
+  default StokeEntry get(String id) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'get'");
+  }
+
+  @Override
   default ArrayList<StokeEntry> getAllByProductId(String id) {
 
     List<StokeEntryJpa> stokeEntryJpas = this.findByProductId(id);

@@ -2,11 +2,9 @@ package com.courseapi.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.courseapi.application.repositories.CourseRepository;
 import com.courseapi.application.usecases.StokeBoundContext.StokeService;
 import com.courseapi.application.usecases.StokeBoundContext.StokeService.MakeStokeEntryInput;
@@ -24,11 +22,12 @@ public class StokeServiceTest {
   @Test
   void shouldBeAbleCreateAnEntryOnStoke() {
     var courseId = courseRepository.save(new Course(null, "Learn Java", "dec", 1000, 99, "test.png"));
-    // stokeService.makeStokeEntry(new MakeStokeEntryInput(courseId, "in", 10));
+    stokeService.makeStokeEntry(new MakeStokeEntryInput(courseId, "in", 10));
+    stokeService.makeStokeEntry(new MakeStokeEntryInput(courseId, "out", 2));
 
-    // var output = stokeService.calculateStokeEntry(courseId);
+    var output = stokeService.calculateStokeEntry(courseId);
 
-    // assertEquals(output.total(), 10);
+    assertEquals(output.total(), 8);
   }
 
 }
