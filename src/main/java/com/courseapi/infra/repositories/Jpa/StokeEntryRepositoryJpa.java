@@ -42,4 +42,9 @@ public interface StokeEntryRepositoryJpa extends JpaRepository<StokeEntryJpa, St
     });
     return stokeEntries;
   }
+
+  @Override
+  default int count(String id) {
+    return getAllByProductId(id).size();
+  }
 }

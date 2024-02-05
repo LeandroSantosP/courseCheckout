@@ -24,7 +24,6 @@ public class StokeService {
   public String makeStokeEntry(MakeStokeEntryInput input) {
     Course course = this.courseRepository.get(input.courseId);
     StokeEntry stokeEntry = StokeEntryFactory.create(input.operation(), course.getId(), input.amount());
-
     return this.stokeEntryRepository.save(stokeEntry);
   }
 

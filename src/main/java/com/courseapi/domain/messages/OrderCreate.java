@@ -9,12 +9,13 @@ public class OrderCreate extends Message<OrderMessage> {
     super("order-create", null);
   }
 
-  public OrderCreate(String orderId, double price, String creditCardToken) {
-    super("order-create", new OrderMessage(orderId, price, creditCardToken));
+  public OrderCreate(String orderId, double price, String creditCardToken, String courseId) {
+    super("order-create", new OrderMessage(orderId, price, creditCardToken, courseId));
   }
 
-  public OrderCreate(String orderId, double price, String creditCardToken, String exchange, String routekey) {
-    super("order-create", new OrderMessage(orderId, price, creditCardToken), exchange, routekey);
+  public OrderCreate(String orderId, double price, String creditCardToken, String exchange, String routekey,
+      String courseId) {
+    super("order-create", new OrderMessage(orderId, price, creditCardToken, courseId), exchange, routekey);
   }
 
   @Override

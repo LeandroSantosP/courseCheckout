@@ -10,4 +10,6 @@ public interface StokeEntryRepository {
   StokeEntry get(String id);
 
   ArrayList<StokeEntry> getAllByProductId(String id);
+
+  int count(String id);
 }

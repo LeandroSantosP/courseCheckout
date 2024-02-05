@@ -3,16 +3,20 @@ package com.courseapi.integration;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.courseapi.application.repositories.CourseRepository;
 import com.courseapi.application.repositories.OrderRepository;
+import com.courseapi.application.repositories.StokeEntryRepository;
 import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut;
 import com.courseapi.application.usecases.CheckoutBoundContext.GetOrder;
 import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut.CheckOutInput;
 import com.courseapi.domain.entities.Course;
+import com.courseapi.domain.entities.StokeEntryIn;
 
 @SpringBootTest
 public class CheckOutTest {
@@ -29,11 +33,17 @@ public class CheckOutTest {
   @Autowired
   OrderRepository orderRepository;
 
+  @Autowired
+  StokeEntryRepository stokeServiceRepository;
+
   @Test
   void testExecute() throws InterruptedException {
     var courseId = this.courseRepository.save(
         Course.create("Learn Java", "Addding some description", 999,
             22222, "img-name-1.png", 5.0));
+
+    stokeServiceRepository.save(new StokeEntryIn(UUID.randomUUID().toString(), courseId, 10));
+    stokeServiceRepository.count(courseId);
 
     CheckOutInput input = new CheckOutInput(courseId, "John Doe",
         "john.doe@gmail.com", "123456789");

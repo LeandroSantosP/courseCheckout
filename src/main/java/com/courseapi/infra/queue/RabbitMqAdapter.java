@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.courseapi.application.usecases.CheckoutBoundContext.ConfimOrder;
+import com.courseapi.application.usecases.StokeBoundContext.StokeService;
+import com.courseapi.application.usecases.StokeBoundContext.StokeService.MakeStokeEntryInput;
 import com.courseapi.application.usecases.paymentBoundContext.PaymentProcess;
 import com.courseapi.domain.messages.Message;
 import com.courseapi.domain.messages.OrderCreate;
@@ -27,6 +29,9 @@ public class RabbitMqAdapter implements QueueBroken {
   @Autowired
   ConfimOrder confimOrder;
 
+  @Autowired
+  private StokeService stokeService;
+
   @Override
   public void publisher(Message<?> message) {
     ObjectMapper objectMapper = new ObjectMapper();
@@ -45,9 +50,12 @@ public class RabbitMqAdapter implements QueueBroken {
   @RabbitListener(queues = "order-create")
   void onMessage(String input) {
     try {
-      OrderCreate message = new ObjectMapper().readValue(input.toString(),
+      OrderCreate messageData = new ObjectMapper().readValue(input.toString(),
           OrderCreate.class);
-      this.paymentProcess.handle(message.getMessage());
+
+      var message = messageData.getMessage();
+      stokeService.makeStokeEntry(new MakeStokeEntryInput(message.courseId(), "out", 1));
+      this.paymentProcess.handle(messageData.getMessage());
     } catch (JsonProcessingException e) {
       System.out.println("JsonProcessingException: " + e.getMessage());
       e.printStackTrace();
