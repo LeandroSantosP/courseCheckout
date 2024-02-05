@@ -31,7 +31,7 @@ public class CreateCourseTest {
     MockMultipartFile image = new MockMultipartFile("file", file.getName(),
         "image/png", new FileInputStream(file));
     CreateCourseInput input = new CreateCourseInput("Learn Java", "desc", 999,
-        100, image);
+        100, image, 5.0);
     var id = this.createCourse.execute(input);
     assertNotNull(id);
   }

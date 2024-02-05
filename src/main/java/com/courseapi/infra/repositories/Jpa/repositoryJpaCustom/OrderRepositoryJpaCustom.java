@@ -8,7 +8,6 @@ import com.courseapi.domain.entities.Order;
 import com.courseapi.infra.execptions.NotFound;
 import com.courseapi.infra.repositories.Jpa.JpaTableObjScan.CourseJpa;
 import com.courseapi.infra.repositories.Jpa.JpaTableObjScan.OrderJpa;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;

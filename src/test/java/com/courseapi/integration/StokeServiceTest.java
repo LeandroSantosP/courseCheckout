@@ -21,7 +21,7 @@ public class StokeServiceTest {
 
   @Test
   void shouldBeAbleCreateAnEntryOnStoke() {
-    var courseId = courseRepository.save(new Course(null, "Learn Java", "dec", 1000, 99, "test.png"));
+    var courseId = courseRepository.save(new Course(null, "Learn Java", "dec", 1000, 99, "test.png", 5.0));
     stokeService.makeStokeEntry(new MakeStokeEntryInput(courseId, "in", 10));
     stokeService.makeStokeEntry(new MakeStokeEntryInput(courseId, "out", 2));
 

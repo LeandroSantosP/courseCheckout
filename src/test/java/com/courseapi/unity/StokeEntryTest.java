@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.courseapi.domain.entities.StokeEntry;
 import com.courseapi.domain.entities.StokeEntryCalculator;
 import com.courseapi.domain.entities.StokeEntryIn;
 import com.courseapi.domain.entities.StokeEntryOut;
 
-@SpringBootTest
 public class StokeEntryTest {
 
   @Test

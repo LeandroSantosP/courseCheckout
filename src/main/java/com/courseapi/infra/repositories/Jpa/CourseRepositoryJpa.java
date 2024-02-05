@@ -22,7 +22,8 @@ public interface CourseRepositoryJpa extends JpaRepository<CourseJpa, String>, C
         couseData.getDescription(),
         couseData.getDuration(),
         couseData.getPrice(),
-        couseData.getImageRef());
+        couseData.getImageRef(),
+        couseData.getIofPersentage());
   }
 
   @Override
@@ -34,7 +35,8 @@ public interface CourseRepositoryJpa extends JpaRepository<CourseJpa, String>, C
             course.getDescription(),
             course.getRef(),
             course.getDuration(),
-            course.getPrice()));
+            course.getPrice(),
+            course.getIofPersentage()));
 
     return couseData.getId();
   }

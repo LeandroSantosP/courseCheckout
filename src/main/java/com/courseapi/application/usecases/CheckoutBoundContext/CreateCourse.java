@@ -19,12 +19,13 @@ public class CreateCourse {
 
   public String execute(CreateCourseInput input) {
     String ref = this.storageCourse.persiste(input.file());
-    Course course = Course.create(input.name(), input.description(), input.duration(), input.price(), ref);
+    Course course = Course.create(input.name(), input.description(), input.duration(), input.price(), ref,
+        input.iof_persentage());
     return this.courseRepository.save(course);
   }
 
   public record CreateCourseInput(
-      String name, String description, double price, int duration, MultipartFile file) {
+      String name, String description, double price, int duration, MultipartFile file, double iof_persentage) {
 
   }
 

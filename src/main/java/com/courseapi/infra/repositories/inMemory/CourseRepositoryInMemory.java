@@ -18,7 +18,7 @@ public class CourseRepositoryInMemory implements CourseRepository {
     this.courses
         .add(
             new Course("6d0b1e87-e755-4339-a235-a4fdbc8af45a", "Learn Java", "Addding some description", 9999,
-                22222, ""));
+                22222, "", 5.0));
 
   }
 

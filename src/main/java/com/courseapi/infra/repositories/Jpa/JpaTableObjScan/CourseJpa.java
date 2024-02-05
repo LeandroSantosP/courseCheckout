@@ -35,4 +35,8 @@ public class CourseJpa {
   @Column(nullable = false)
   private double price;
 
+  @Min(value = 0)
+  @Column(nullable = true)
+  private double iofPersentage;
+
 }

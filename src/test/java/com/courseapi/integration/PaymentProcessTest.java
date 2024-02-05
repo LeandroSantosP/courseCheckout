@@ -13,7 +13,6 @@ import com.courseapi.domain.messages.OrderMessage;
 import com.courseapi.infra.gateways.PaymentGatewayFack;
 import com.courseapi.infra.queue.QueueBroken;
 
-@SpringBootTest
 public class PaymentProcessTest {
 
   @Test

@@ -1,12 +1,9 @@
 package com.courseapi.domain.entities;
 
 import java.util.UUID;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class Order {
 
   private final String id;
@@ -17,17 +14,28 @@ public class Order {
 
   private double price;
 
-  private String email;
+  private Email email;
 
   private String name;
 
+  public Order(String id, String courseId, String status, double price, String email, String name) {
+    this.id = id;
+    this.courseId = courseId;
+    this.status = status;
+    this.price = price;
+    this.email = new Email(email);
+    this.name = name;
+  }
+
   static public Order create(String courseId, String name, String email, double price) {
+
     String orderId = UUID.randomUUID().toString();
     String status = "waiting_payment";
     return new Order(orderId, courseId, status, price, email, name);
   }
 
   public static Order rebuild(String orderId, String status, String courseId, String name, String email, double price) {
+
     return new Order(orderId, courseId, status, price, email, name);
   }
 
@@ -49,6 +57,16 @@ public class Order {
 
   private void reject() {
     this.status = "rejected";
+  }
+
+  public String getEmail() {
+    return this.email.getValue();
+  }
+
+  public double getTotal(String location) {
+    double iof = CalculateTaxSimpleFactory.create(location).calculate(this.price);
+    double total = this.price + iof;
+    return total;
   }
 
 }
