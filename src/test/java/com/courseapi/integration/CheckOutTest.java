@@ -18,6 +18,7 @@ import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut.CheckOut
 import com.courseapi.domain.entities.Course;
 import com.courseapi.domain.entities.StokeEntryIn;
 
+/* Api should be started for this test! */
 @SpringBootTest
 public class CheckOutTest {
 
