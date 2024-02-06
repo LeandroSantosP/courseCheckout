@@ -38,13 +38,14 @@ public class CheckOutTest {
 
   @Test
   void testExecute() throws InterruptedException {
+    
     var courseId = this.courseRepository.save(
         Course.create("Learn Java", "Addding some description", 999,
             22222, "img-name-1.png", 5.0));
+        
 
     stokeServiceRepository.save(new StokeEntryIn(UUID.randomUUID().toString(), courseId, 10));
     stokeServiceRepository.count(courseId);
-
     CheckOutInput input = new CheckOutInput(courseId, "John Doe",
         "john.doe@gmail.com", "123456789");
     var output = checkOut.execute(input);

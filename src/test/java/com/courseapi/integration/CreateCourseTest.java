@@ -27,7 +27,7 @@ public class CreateCourseTest {
 
   @Test
   void shouldBeAbleToCreateCourse() throws FileNotFoundException, IOException {
-    File file = new File("src/main/resources/img/myImg.png");
+      File file = new File("src/main/resources/img/myImg.png");
     MockMultipartFile image = new MockMultipartFile("file", file.getName(),
         "image/png", new FileInputStream(file));
     CreateCourseInput input = new CreateCourseInput("Learn Java", "desc", 999,
