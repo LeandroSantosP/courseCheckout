@@ -46,6 +46,7 @@ public class CheckOutTest {
 
     stokeServiceRepository.save(new StokeEntryIn(UUID.randomUUID().toString(), courseId, 10));
     stokeServiceRepository.count(courseId);
+
     CheckOutInput input = new CheckOutInput(courseId, "John Doe",
         "john.doe@gmail.com", "123456789");
     var output = checkOut.execute(input);
@@ -55,7 +56,7 @@ public class CheckOutTest {
     var getOrderOutput = this.getOrder.execute(output.orderId());
     System.out.println("STAUTS " + getOrderOutput.status());
 
-    assertNotNull(getOrderOutput);
+    //assertNotNull(getOrderOutput);
     assertEquals(getOrderOutput.orderId(), output.orderId());
     assertEquals(getOrderOutput.couseId(),
         courseId);
@@ -63,6 +64,12 @@ public class CheckOutTest {
     assertEquals(getOrderOutput.email(), "john.doe@gmail.com");
     assertEquals(getOrderOutput.price(), 222.22);
     assertEquals(getOrderOutput.status(), "payed");
+
+    var stoke_entries = stokeServiceRepository.getAllByProductId(courseId);
+    int totalAfterPurchers = stoke_entries.stream()
+        .mapToInt(i -> "in".equals(i.getOperation()) ? i.getAmount() : -i.getAmount()).reduce(0,
+            Integer::sum);
+    assertEquals(totalAfterPurchers, 9);
   }
 
 }

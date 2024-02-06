@@ -1,16 +1,11 @@
 package com.courseapi.application.usecases.CheckoutBoundContext;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.courseapi.application.interfaces.CheckOutOrderRepo;
 import com.courseapi.application.repositories.CourseRepository;
-import com.courseapi.application.repositories.StokeEntryRepository;
 import com.courseapi.domain.entities.Course;
 import com.courseapi.domain.entities.Order;
-import com.courseapi.domain.entities.StokeEntry;
 import com.courseapi.domain.messages.OrderCreate;
 import com.courseapi.infra.http.HttpClient;
 import com.courseapi.infra.queue.QueueBroken;;;;;

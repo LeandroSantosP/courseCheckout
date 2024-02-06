@@ -1,6 +1,5 @@
 package com.courseapi.application.usecases.paymentBoundContext;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import com.courseapi.application.interfaces.MessageHandler;
