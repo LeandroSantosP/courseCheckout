@@ -1,0 +1,29 @@
+# Global Config
+@baseUrl = http://localhost:8080
+
+
+## Course 
+
+POST {{baseUrl}}/course/  HTTP/1.1
+Content-Type: multipart/form-data; boundary=----7MA4YWxkTrZu0gW
+
+Content-Type: application/json
+
+{ 
+  "name": "Java Course", 
+  "description": "Addding some description", 
+  "price": "100.99", 
+  "duration": "100", 
+  "iof_persentage": "5.0"
+}
+
+------7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="myImg.png"
+Content-Type: image/png
+
+< ./1myImg.png
+------7MA4YWxkTrZu0gW--
+
+# StokeEntry
+
+{{baseUrl}}/stoke-entry/2 
