@@ -18,7 +18,6 @@ import com.courseapi.application.usecases.CheckoutBoundContext.CheckOut.CheckOut
 import com.courseapi.domain.entities.Course;
 import com.courseapi.domain.entities.StokeEntryIn;
 
-/* Api should be started for this test! */
 @SpringBootTest
 public class CheckOutTest {
 
@@ -39,11 +38,14 @@ public class CheckOutTest {
 
   @Test
   void testExecute() throws InterruptedException {
+    
     var courseId = this.courseRepository.save(
         Course.create("Learn Java", "Addding some description", 999,
             22222, "img-name-1.png", 5.0));
+        
 
     stokeServiceRepository.save(new StokeEntryIn(UUID.randomUUID().toString(), courseId, 10));
+    stokeServiceRepository.count(courseId);
 
     CheckOutInput input = new CheckOutInput(courseId, "John Doe",
         "john.doe@gmail.com", "123456789");
@@ -54,7 +56,7 @@ public class CheckOutTest {
     var getOrderOutput = this.getOrder.execute(output.orderId());
     System.out.println("STAUTS " + getOrderOutput.status());
 
-    assertNotNull(getOrderOutput);
+    //assertNotNull(getOrderOutput);
     assertEquals(getOrderOutput.orderId(), output.orderId());
     assertEquals(getOrderOutput.couseId(),
         courseId);

@@ -26,7 +26,6 @@ public class CreateCourse {
 
   public record CreateCourseInput(
       String name, String description, double price, int duration, MultipartFile file, double iof_persentage) {
-
   }
 
 }
