@@ -1,29 +1,77 @@
 # Global Config
-@baseUrl = http://localhost:8080
+@baseUrl = http://localhost:8085
 
 
-## Course 
+// Create A Product By id
 
-POST {{baseUrl}}/course/  HTTP/1.1
-Content-Type: multipart/form-data; boundary=----7MA4YWxkTrZu0gW
+# @name course_create 
+POST {{baseUrl}}/course/ HTTP/1.1
+Content-Type: multipart/form-data; boundary=MyBoundary
 
-Content-Type: application/json
+--MyBoundary
+Content-Disposition: form-data; name="name"
 
-{ 
-  "name": "Java Course", 
-  "description": "Addding some description", 
-  "price": "100.99", 
-  "duration": "100", 
-  "iof_persentage": "5.0"
-}
+CourseName
+--MyBoundary
+Content-Disposition: form-data; name="description"
 
-------7MA4YWxkTrZu0gW
+CourseDescription
+--MyBoundary
+Content-Disposition: form-data; name="price"
+
+99.99
+--MyBoundary
+Content-Disposition: form-data; name="duration"
+
+10
+--MyBoundary
+Content-Disposition: form-data; name="iof_percentage"
+
+5.5
+--MyBoundary
 Content-Disposition: form-data; name="image"; filename="myImg.png"
 Content-Type: image/png
 
-< ./1myImg.png
-------7MA4YWxkTrZu0gW--
+< ./myImg.png
 
-# StokeEntry
+--MyBoundary--
 
-{{baseUrl}}/stoke-entry/2 
+@courseId = {{course_create.response.body.course_id}}
+
+### # StokeEntry
+
+// Create A Sotke Entry for Product By id
+POST {{baseUrl}}/stoke-entry/create
+Content-Type: application/json
+
+{
+		"courseId": "{{courseId}}",
+		"operation": "in",
+		"amount":10
+}
+
+###
+
+// Calculate Stoke Entry By id
+POST {{baseUrl}}/stoke-entry/calculate/{{courseId}}
+
+
+### #Check-out
+
+// Create An Order
+# @name order_create
+POST {{baseUrl}}/checkout/create HTTP/1.1
+Content-Type: application/json
+
+{
+	"courseId": "{{courseId}}", 
+	"name": "Java Course",
+	"email":"john.doe@gmail.com",
+	"creditCardToken": "12345"
+}
+
+@orderId = {{order_create.response.body.orderId}}
+
+###
+// Create An Order By id
+GET {{baseUrl}}/checkout/{{orderId}}

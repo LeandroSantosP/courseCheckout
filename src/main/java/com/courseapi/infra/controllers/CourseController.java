@@ -7,11 +7,13 @@ import org.springframework.web.multipart.MultipartFile;
 import com.courseapi.application.usecases.CheckoutBoundContext.CreateCourse;
 import com.courseapi.application.usecases.CheckoutBoundContext.CreateCourse.CreateCourseInput;
 
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/course")
@@ -20,18 +22,32 @@ public class CourseController {
   @Autowired
   CreateCourse createCourse;
 
-  public record CreateCourseController(
-      String name, String description, double price, int duration, double iof_persentage) {
+  @PostMapping(value = "/")
+  public ResponseEntity<CreateCoursecOutputController> createCourse(@Valid CreateCourseInputController input) {
+    String output = createCourse
+        .execute(new CreateCourseInput(input.getName(),
+            input.getDescription(),
+            input.getPrice(),
+            input.getDuration(),
+            input.getImage(),
+            input.getIof_percentage()));
+    return ResponseEntity.ok(new CreateCoursecOutputController(output));
   }
 
-  @PostMapping("/")
-  public ResponseEntity<String> createCourse(@RequestBody CreateCourseController input,
-      @RequestParam("image") MultipartFile image) {
-    String output = createCourse
-        .execute(new CreateCourseInput(input.name(), input.description(),
-            input.price(), input.duration(), image,
-            input.iof_persentage()));
-    return ResponseEntity.ok(output);
+  private record CreateCoursecOutputController(String course_id) {
   }
+
+}
+
+@Getter
+@AllArgsConstructor
+class CreateCourseInputController {
+
+  private MultipartFile image;
+  private String name;
+  private String description;
+  private double price;
+  private int duration;
+  private double iof_percentage;
 
 }
