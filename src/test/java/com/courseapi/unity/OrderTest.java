@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import com.courseapi.domain.entities.Order;
+import com.courseapi.infra.execptions.InvalidField;
 
 public class OrderTest {
 
@@ -19,7 +20,7 @@ public class OrderTest {
 
   @Test
   void shouldNotBeAbleCreateAOrderWithInvalidEmail() {
-    assertThrows(IllegalArgumentException.class, () -> {
+    assertThrows(InvalidField.class, () -> {
       Order.create("courseId", "Java for beginners", "john.dow@", 1999);
     });
   }
