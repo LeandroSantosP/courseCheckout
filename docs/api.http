@@ -31,7 +31,7 @@ Content-Disposition: form-data; name="iof_percentage"
 Content-Disposition: form-data; name="image"; filename="myImg.png"
 Content-Type: image/png
 
-< ./myImg.png
+< ../myImg.png
 
 --MyBoundary--
 
