@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,6 +35,7 @@ public class CreateCourseTest {
         100, image, 5.0);
     var id = this.createCourse.execute(input);
     assertNotNull(id);
+    this.storageCourse.clear();
   }
 
 }

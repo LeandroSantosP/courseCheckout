@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +25,8 @@ public class CourseController {
   CreateCourse createCourse;
 
   @PostMapping(value = "/")
-  public ResponseEntity<CreateCoursecOutputController> createCourse(@Valid CreateCourseInputController input) {
+  public ResponseEntity<CreateCoursecOutputController> createCourse(@Valid CreateCourseInputController input)
+      throws IOException {
     String output = createCourse
         .execute(new CreateCourseInput(input.getName(),
             input.getDescription(),

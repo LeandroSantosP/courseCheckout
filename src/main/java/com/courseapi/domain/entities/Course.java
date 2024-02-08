@@ -30,9 +30,12 @@ public class Course {
             String description,
             int duration,
             double price,
-            String ref,
             double iof_persentage) {
-        return new Course(UUID.randomUUID().toString(), name, description, duration, price / 100, ref, iof_persentage);
+        return new Course(UUID.randomUUID().toString(), name, description, duration, price / 100, null, iof_persentage);
+    }
+
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 
     public double getPrice() {

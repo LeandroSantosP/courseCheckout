@@ -1,18 +1,17 @@
 package com.courseapi.infra.storage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
-
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.courseapi.application.interfaces.StorageCourse;
+import com.courseapi.domain.entities.MyFile;
+import com.courseapi.infra.execptions.CustomError;
 import com.courseapi.infra.settings.FileStorageProperties;
 
 @Component
@@ -26,16 +25,15 @@ public class StorageCourseInDisc implements StorageCourse {
   }
 
   @Override
-  public String persiste(MultipartFile content) {
-    String fileName = StringUtils.cleanPath(content.getOriginalFilename());
-
+  public String persiste(MyFile myFile, String indentify) {
+    String targetLocation = null;
     try {
-      Path targetLocation = fileStorageLocation.resolve(fileName);
-      content.transferTo(targetLocation);
-      return targetLocation.toAbsolutePath().toString();
+      targetLocation = myFile.writeInDisc(indentify, fileStorageLocation);
+      return targetLocation;
     } catch (IOException e) {
-      System.out.println(e.getMessage());
-      throw new RuntimeException("Error on uploading file: " + fileName);
+      e.printStackTrace();
+      throw new CustomError(
+          "Error on uploading file: " + myFile.getFilename() + ", to follow location: " + targetLocation);
     }
   }
 
@@ -47,6 +45,19 @@ public class StorageCourseInDisc implements StorageCourse {
       System.out.println(e.getMessage());
       e.printStackTrace();
       throw new RuntimeException("Error getting file: " + e.getMessage());
+    }
+  }
+
+  @Override
+  public void clear() {
+    try {
+      Files.walk(fileStorageLocation)
+          .filter(Files::isRegularFile)
+          .map(Path::toFile)
+          .forEach(File::delete);
+    } catch (IOException e) {
+      System.err.println("Error clearing storage: " + e.getMessage());
+      e.printStackTrace();
     }
   }
 
