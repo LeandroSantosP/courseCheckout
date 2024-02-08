@@ -48,7 +48,7 @@ public class RabbitMqAdapter implements QueueBroken {
   }
 
   @RabbitListener(queues = "order-create")
-  void onMessage(String input) {
+  void onOrderCreate(String input) {
     try {
       OrderCreate messageData = new ObjectMapper().readValue(input.toString(),
           OrderCreate.class);

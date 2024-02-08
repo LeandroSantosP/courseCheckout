@@ -7,6 +7,7 @@ import com.courseapi.application.repositories.CourseRepository;
 import com.courseapi.domain.entities.Course;
 import com.courseapi.domain.entities.Order;
 import com.courseapi.domain.messages.OrderCreate;
+import com.courseapi.infra.execptions.CourseUnAvailable;
 import com.courseapi.infra.http.HttpClient;
 import com.courseapi.infra.queue.QueueBroken;;;;;
 
@@ -36,7 +37,7 @@ public class CheckOut {
     Integer courseStokeAmount = this.httpClient.fetchByPath("/stoke-entry/" + course.getId(), Integer.class);
 
     if (courseStokeAmount <= 0) {
-      throw new RuntimeException("Course is not available!");
+      throw new CourseUnAvailable();
     }
 
     Order order = Order.create(course.getId(), input.name(), input.email(), course.getPrice());

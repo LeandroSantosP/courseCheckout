@@ -1,6 +1,9 @@
 package com.courseapi.domain.entities;
 
 import java.util.UUID;
+
+import com.courseapi.infra.execptions.CustomError;
+
 import lombok.Getter;
 
 @Getter
@@ -48,7 +51,7 @@ public class Order {
       this.reject();
       return;
     }
-    throw new RuntimeException("Invalid payment response!");
+    throw new CustomError("Invalid payment response!");
   }
 
   private void pay() {

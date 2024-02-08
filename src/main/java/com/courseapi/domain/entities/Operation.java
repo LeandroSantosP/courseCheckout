@@ -1,5 +1,7 @@
 package com.courseapi.domain.entities;
 
+import com.courseapi.infra.execptions.InvalidField;
+
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -9,7 +11,7 @@ public class Operation {
 
   public Operation(String value) {
     if (value != "in" && value != "out") {
-      throw new IllegalArgumentException("Invalid Operation");
+      throw new InvalidField("Invalid Operation");
     }
 
     this.value = value;

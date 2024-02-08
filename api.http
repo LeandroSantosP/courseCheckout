@@ -1,7 +1,6 @@
 # Global Config
 @baseUrl = http://localhost:8085
 
-
 // Create A Product By id
 
 # @name course_create 
@@ -19,7 +18,7 @@ CourseDescription
 --MyBoundary
 Content-Disposition: form-data; name="price"
 
-99.99
+999.99
 --MyBoundary
 Content-Disposition: form-data; name="duration"
 

@@ -28,7 +28,8 @@ public class StokeService {
   }
 
   public CalculateStokeEntryOutput calculateStokeEntry(String courseId) {
-    ArrayList<StokeEntry> stokeEntries = this.stokeEntryRepository.getAllByProductId(courseId);
+    Course course = this.courseRepository.get(courseId);
+    ArrayList<StokeEntry> stokeEntries = this.stokeEntryRepository.getAllByProductId(course.getId());
     var total = StokeEntryCalculator.exec(stokeEntries);
     return new CalculateStokeEntryOutput(courseId, total);
   }

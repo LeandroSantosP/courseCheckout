@@ -1,5 +1,7 @@
 package com.courseapi.domain.entities;
 
+import com.courseapi.infra.execptions.InvalidField;
+
 public class CalculateTaxSimpleFactory {
 
   static CalculateTax create(String location) {
@@ -11,6 +13,6 @@ public class CalculateTaxSimpleFactory {
       return new CalculateTaxSc();
     }
 
-    throw new RuntimeException("Invalid location: " + location);
+    throw new InvalidField("Invalid location: " + location);
   }
 }

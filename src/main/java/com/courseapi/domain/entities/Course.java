@@ -1,5 +1,7 @@
 package com.courseapi.domain.entities;
 
+import java.util.UUID;
+
 import lombok.Getter;
 
 @Getter
@@ -30,7 +32,7 @@ public class Course {
             double price,
             String ref,
             double iof_persentage) {
-        return new Course(null, name, description, duration, price / 100, ref, iof_persentage);
+        return new Course(UUID.randomUUID().toString(), name, description, duration, price / 100, ref, iof_persentage);
     }
 
     public double getPrice() {

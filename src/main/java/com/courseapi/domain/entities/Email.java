@@ -3,6 +3,8 @@ package com.courseapi.domain.entities;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.courseapi.infra.execptions.InvalidField;
+
 import lombok.Getter;
 
 public class Email {
@@ -14,7 +16,7 @@ public class Email {
   public Email(String email) {
     Matcher matcher = Pattern.compile(REGEX_EMAIL).matcher(email);
     if (!matcher.matches()) {
-      throw new IllegalArgumentException("Invalid Email");
+      throw new InvalidField("Invalid Email");
     }
     this.value = email;
   }

@@ -55,7 +55,7 @@ NOT READY
 ## Usage
 
 1. Start the application with Maven
-2. The API will be accessible at http://localhost:8080
+2. The API will be accessible at http://localhost:8085
 
 ## API Endpoints
 

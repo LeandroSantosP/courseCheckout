@@ -28,6 +28,7 @@ public interface CourseRepositoryJpa extends JpaRepository<CourseJpa, String>, C
 
   @Override
   default String save(Course course) {
+    System.out.println("IDD+ " + course.getId());
     var couseData = this
         .save(new CourseJpa(
             course.getId(),

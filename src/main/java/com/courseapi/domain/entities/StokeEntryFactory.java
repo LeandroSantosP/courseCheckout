@@ -1,5 +1,7 @@
 package com.courseapi.domain.entities;
 
+import com.courseapi.infra.execptions.InvalidField;
+
 public class StokeEntryFactory {
 
   public static StokeEntry create(String operation, String productId, int amount) {
@@ -11,7 +13,7 @@ public class StokeEntryFactory {
       return StokeEntryOut.create(productId, amount);
     }
 
-    throw new RuntimeException("Invalid operation: " + operation);
+    throw new InvalidField("Invalid operation: " + operation);
   }
 
   public static StokeEntry rebuild(String operation, String id, String productId, int amount) {
@@ -22,7 +24,7 @@ public class StokeEntryFactory {
       return new StokeEntryOut(id, productId, amount);
     }
 
-    throw new RuntimeException("Invalid operation: " + operation);
+    throw new InvalidField("Invalid operation: " + operation);
   }
 
 }
