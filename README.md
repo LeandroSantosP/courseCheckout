@@ -1,4 +1,4 @@
-# Authentication API
+# Course API
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
@@ -8,6 +8,8 @@
 This project is an API built using **Java, Java Spring, jpa, PostgresSQL as the database, RabbitMq, Junit For Testing.**
 
 The API was development by me to practice asynchronous communication between microservices using RabbitMq ("In this case i create the whole application in the same code base but the BoundContext of each application is separated within courseapi/application/usecases").
+
+![GitHub Logo](./assets/CourseImg.png)
 
 ## Table of Contents
 

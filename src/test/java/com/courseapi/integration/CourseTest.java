@@ -39,13 +39,12 @@ public class CourseTest {
     CreateCourseInput input = new CreateCourseInput("Learn Java", "desc", 9999,
         100, image, 5.0);
     var id = this.createCourse.execute(input);
-
     var output = this.getCourse.execute(id);
+
     assertEquals(output.course_name(), "Learn Java");
     assertEquals(output.description(), "desc");
     assertEquals(output.price(), 99.99);
     assertEquals(output.image().getSize(), image.getSize());
-
     assertEquals(image.getBytes()[10], output.image().getBytes()[10]);
     this.storageCourse.clear();
   }
