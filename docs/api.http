@@ -54,7 +54,6 @@ Content-Type: application/json
 // Calculate Stoke Entry By id
 POST {{baseUrl}}/stoke-entry/calculate/{{courseId}}
 
-
 ### #Check-out
 
 // Create An Order
@@ -72,5 +71,5 @@ Content-Type: application/json
 @orderId = {{order_create.response.body.orderId}}
 
 ###
-// Create An Order By id
+// Get An Order By id
 GET {{baseUrl}}/checkout/{{orderId}}

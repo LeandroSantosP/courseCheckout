@@ -13,16 +13,15 @@ The API was development by me to practice asynchronous communication between mic
 
 ## Table of Contents
 
-- [Installation](#installation)
+- [Installation / Docker](#installation)
 - [Configuration](#configuration)
 - [Docker](#docker)
 - [Test](#test)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
-- [Database](#database)
 - [Contributing](#contributing)
 
-## Installation
+## Installation / Docker
 
 1. Clone the repository:
 
@@ -83,20 +82,43 @@ To run the tests, Follow the next steps (Make sure the Configuration is Already 
 
 ## API Endpoints
 
-NOT READY
+**Go into ./docs and see api.http file or import the insomnia file into the insonia**
 
-## Database
+POST http://localhost:8085/course/
 
-The project utilizes [PostgresSQL](https://www.postgresql.org/) as the database. The necessary database migrations are managed using Flyway.
+POST http://localhost:8085/stoke-entry/create
 
-NOT READY
+Body-json:
+
+```json
+{
+  "courseId": "{{courseId}}",
+  "operation": "in",
+  "amount": 10
+}
+```
+
+POST http://localhost:8085/stoke-entry/calculate/{{courseId}}
+
+POST http://localhost:8085/checkout/create
+
+Body-json:
+
+```json
+{
+  "courseId": "{{courseId}}",
+  "name": "Java Course",
+  "email": "john.doe@gmail.com",
+  "creditCardToken": "12345"
+}
+```
+
+GET http://localhost:8085/checkout/{{orderId}}
+
+To see body/params request go to api.http or insonia
 
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request to the repository.
 
 When contributing to this project, please follow the existing code style, [commit conventions](https://www.conventionalcommits.org/en/v1.0.0/), and submit your changes in a separate branch.
-
-```
-
-```
