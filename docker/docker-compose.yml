@@ -6,6 +6,9 @@ services:
     ports:
       - 15672:15672
       - 5672:5672
+    environment:
+      RABBITMQ_DEFAULT_USER: myusername
+      RABBITMQ_DEFAULT_PASS: mypassword
 
 
   postgresData:
@@ -15,3 +18,5 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mysecrectpass
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data

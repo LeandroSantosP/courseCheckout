@@ -32,7 +32,15 @@ git clone https://github.com/LeandroSantosP/courseCheckout.git
 
 2. Install dependencies with Maven
 
-3. Install [PostgresSQL](https://www.postgresql.org/) # docker recommend
+3. Install [PostgresSQL](https://www.postgresql.org/)
+
+4. Install RabbitMq [RabbitMq](https://rabbitmq.com/)
+
+   **Recommend Exec With Docker/Docker-compose ([Docker](https://www.docker.com/))**
+
+   ```bash
+   bash ./docker/run-docker.sh
+   ```
 
 ## Configuration
 
@@ -42,17 +50,31 @@ spring.datasource.url="YOUR_DATABASE_URL"
 spring.datasource.username="YOUR_USER_NAME"
 spring.datasource.password="YOUR_PASSWORD"
 
-RabbitMq credentials are default, you can change if you wanna.
+spring.rabbitmq.username="YOUR_USERNAME"
+spring.rabbitmq.password="YOU_PASSWORD"
+
+RabbitMq and Postgres credentials are set on application.properties and docker-compose.yaml,
+you can change if you wanna changer you can do it.
 
 Check applicationExample.properties file.
 
-## Docker
-
-NOT READY
-
 ## Test
 
-NOT READY
+To run the tests, Follow the next steps (Make sure the Configuration is Already done):
+
+1. Run The Application for integration test can running.
+
+   ```bash
+   mvn spring-boot:run
+   ```
+
+2. Open a side terminal and run the suit of tests cases by execution the following codes:
+
+   ```bash
+   mvn test
+
+   mvn -Dtest=TestFileName test
+   ```
 
 ## Usage
 
@@ -74,3 +96,7 @@ NOT READY
 Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request to the repository.
 
 When contributing to this project, please follow the existing code style, [commit conventions](https://www.conventionalcommits.org/en/v1.0.0/), and submit your changes in a separate branch.
+
+```
+
+```
